@@ -2,49 +2,42 @@ package com.example.selenium.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.Select;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class FlowlystHomePage implements BasePage{
 
-    @FindBy(how = How.ID, using = "fname")
+    @FindBy(id = "fname")
     public WebElement firstName;
 
-
-
-    @FindBy(how = How.ID, using = "mName")
+    @FindBy(id = "mName")
     public WebElement middleName;
 
-    @FindBy(how = How.ID, using = "lname")
+    @FindBy(id = "lname")
     public WebElement lastName;
 
-    @FindBy(how = How.ID, using = "birthDate")
+    @FindBy(id = "birthDate")
     public WebElement dob;
 
-    @FindBy(how = How.ID, using = "school")
+    @FindBy(id = "school")
     public WebElement school;
 
-    @FindBy(how = How.ID, using = "grade")
+    @FindBy(id = "grade")
     public WebElement grade;
 
-    @FindBy(how = How.CSS, using = "[class=\"rbt-input-main form-control rbt-input\"]")
+    @FindBy(css = "[class=\"rbt-input-main form-control rbt-input\"]")
     public WebElement address;
 
-    @FindBy(how = How.ID, using = "address-item-0")
+    @FindBy(id = "address-item-0")
     public WebElement addressItem0;
 
-    @FindBy(how = How.ID, using = "parentName")
+    @FindBy(id = "parentName")
     public WebElement parentName;
 
-    @FindBy(how = How.ID, using = "parentEmailAddress")
+    @FindBy(id = "parentEmailAddress")
     public WebElement parentEmailAddress;
 
-    @FindBy(how = How.ID, using = "parentPhoneNumber")
+    @FindBy(id = "parentPhoneNumber")
     public WebElement parentPhoneNumber;
 
 }
