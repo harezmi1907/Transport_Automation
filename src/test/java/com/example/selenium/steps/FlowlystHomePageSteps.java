@@ -37,7 +37,7 @@ public class FlowlystHomePageSteps {
         System.out.println("Free:" + freeCount + "\nPaid:" + paidCount);
 
         List<Map<String, String>> freeStudents = getRandomStudentData(Integer.parseInt(freeCount), "free");
-        List<Map<String, String>> paidStudents = getRandomStudentData(Integer.parseInt(paidCount), "free");
+        List<Map<String, String>> paidStudents = getRandomStudentData(Integer.parseInt(paidCount), "paid");
 
 
         System.out.println("Free Students:\n");
