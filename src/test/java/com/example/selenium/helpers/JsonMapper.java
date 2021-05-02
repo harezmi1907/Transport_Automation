@@ -8,8 +8,10 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -24,14 +26,18 @@ public class JsonMapper {
         String file = FileUtils.readFileToString(new File(BigSamplePath), StandardCharsets.UTF_8);
         Type resultType = new TypeToken<List<Map<String, String>>>(){}.getType();
         List<Map<String, String>> bigSampleMap = new Gson().fromJson(file, resultType);
-        int freeCount = 7;
 
-        List<Map<String, String>> freeStudentsMap = bigSampleMap.stream()
-                .filter(student -> student.get("enrollmentStatus").equals("free"))
+        int count = 7;
+        String enrollmentStatus = "free";
+        Collections.shuffle(bigSampleMap, new Random());
+        List<Map<String, String>> studentsMap = bigSampleMap.stream().parallel()
+                .filter(student -> student.get("enrollmentStatus").equals(enrollmentStatus))
                 .collect(Collectors.toList())
-                .stream().limit(freeCount).collect(Collectors.toList());
+                .stream().parallel()
+                .limit(count)
+                .collect(Collectors.toList());
 
-        System.out.println(freeStudentsMap);
+        System.out.println(studentsMap);
     }
 
     /**
@@ -44,12 +50,14 @@ public class JsonMapper {
     public static List<Map<String, String>> getRandomStudentData(int count, String enrollmentStatus) throws IOException {
 
         String bigSamplePath = "src\\test\\resources\\BigSample.json";
+        List<Map<String, String>> bigSampleMap = mapJson(bigSamplePath);
+        Collections.shuffle(bigSampleMap, new Random());
 
-        return mapJson(bigSamplePath)
-                .stream()
+        return   bigSampleMap
+                .stream().parallel()
                 .filter(student -> student.get("enrollmentStatus").equals(enrollmentStatus))
                 .collect(Collectors.toList())
-                .stream()
+                .stream().parallel()
                 .limit(count)
                 .collect(Collectors.toList());
 
