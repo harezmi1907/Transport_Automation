@@ -22,7 +22,8 @@ public class JsonMapper {
 
 
     public static void main(String[] args) throws IOException {
-        String BigSamplePath = "src\\test\\resources\\BigSample.json";
+        //String BigSamplePath = "src\\test\\resources\\BigSample.json";
+        String BigSamplePath = "src/test/resources/BigSample.json";
         String file = FileUtils.readFileToString(new File(BigSamplePath), StandardCharsets.UTF_8);
         Type resultType = new TypeToken<List<Map<String, String>>>(){}.getType();
         List<Map<String, String>> bigSampleMap = new Gson().fromJson(file, resultType);
@@ -49,7 +50,8 @@ public class JsonMapper {
      */
     public static List<Map<String, String>> getRandomStudentData(int count, String enrollmentStatus) throws IOException {
 
-        String bigSamplePath = "src\\test\\resources\\BigSample.json";
+        //String bigSamplePath = "src\\test\\resources\\BigSample.json";
+        String bigSamplePath = "src/test/resources/BigSample.json";
         List<Map<String, String>> bigSampleMap = mapJson(bigSamplePath);
         Collections.shuffle(bigSampleMap, new Random());
 
